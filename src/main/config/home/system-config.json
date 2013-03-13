@@ -582,6 +582,108 @@
             "rif": "${fascinator.home}/alerts/config/rifXmlMap.json"
         }
     },
+    "new-alerts": {
+        "alertSet": [
+            {
+                "name": "Default alert",
+                "path": "${fascinator.home}/new-alerts",
+                "harvestConfig": "${fascinator.home}/harvest/workflows/dataset.json",
+                "handlers": {
+                    "csv": "CSVAlertHandler",
+                    "tab": "CSVAlertHandler",
+                    "com": "CSVAlertHandler",
+                    "csm": "CSVAlertHandler",
+                    "xml": "XMLAlertHandler",
+                    "rif": "XMLAlertHandler"
+                }, 
+                "baseline": {
+                    "workflow_source": "Default Alert"
+                },
+                "timestampFields": ["redbox:submissionProcess.dc:date"],
+                "CSVAlertHandlerParams": {
+                    "configMap": {
+                        "csv": {
+                            "Dialect": {
+                                "skipinitialspace": true
+                            },
+                            "fieldMap": {
+                                    "title": ["title","redbox:submissionProcess.dc:title"],
+                                    "description": ["description", "redbox:submissionProcess.dc:description"],
+                                    "name": "redbox:submissionProcess.locrel:prc.foaf:Person.foaf:name",
+                                    "phone": "redbox:submissionProcess.locrel:prc.foaf:Person.foaf:phone",
+                                    "email": "redbox:submissionProcess.locrel:prc.foaf:Person.foaf:mbox",
+                                    "note": "redbox:submissionProcess.skos:note"
+                            }
+                        },
+                        "tab": {
+                            "Dialect": {
+                                "delimiter": "\t",
+                                "skipinitialspace": true
+                            },
+                            "fieldMap": {
+                                    "title": ["title","redbox:submissionProcess.dc:title"],
+                                    "description": ["description", "redbox:submissionProcess.dc:description"],
+                                    "name": "redbox:submissionProcess.locrel:prc.foaf:Person.foaf:name",
+                                    "phone": "redbox:submissionProcess.locrel:prc.foaf:Person.foaf:phone",
+                                    "email": "redbox:submissionProcess.locrel:prc.foaf:Person.foaf:mbox",
+                                    "note": "redbox:submissionProcess.skos:note"
+                            }
+                        },
+                        "com": {
+                            "Dialect": {
+                                "delimiter": "|",
+                                "skipinitialspace": true
+                            },
+                            "fieldMap": {
+                                    "title": ["title","redbox:submissionProcess.dc:title"],
+                                    "description": ["description", "redbox:submissionProcess.dc:description"],
+                                    "name": "redbox:submissionProcess.locrel:prc.foaf:Person.foaf:name",
+                                    "phone": "redbox:submissionProcess.locrel:prc.foaf:Person.foaf:phone",
+                                    "email": "redbox:submissionProcess.locrel:prc.foaf:Person.foaf:mbox",
+                                    "note": "redbox:submissionProcess.skos:note"
+                            }
+                        },
+                        "csm": {
+                            "Dialect": {
+                                "delimiter": "|",
+                                "skipinitialspace": true
+                            },
+                            "fieldMap": {
+                                    "title": ["title","redbox:submissionProcess.dc:title"],
+                                    "description": ["description", "redbox:submissionProcess.dc:description"],
+                                    "name": "redbox:submissionProcess.locrel:prc.foaf:Person.foaf:name",
+                                    "phone": "redbox:submissionProcess.locrel:prc.foaf:Person.foaf:phone",
+                                    "email": "redbox:submissionProcess.locrel:prc.foaf:Person.foaf:mbox",
+                                    "keywords": "dc:subject.vivo:keyword.0.rdf:PlainLiteral",
+                                    "note": "redbox:submissionProcess.skos:note"
+                            },
+                            "multiValue": {
+                                "fields": ["keywords"],
+                                "fieldDelimiter": ";"
+                            }
+                        }
+                    }
+                },
+                "XMLAlertHandlerParams": {
+                    "configMap": {
+                        "xml": {
+                            "xmlMap": "${fascinator.home}/alerts/config/basicXmlMap.json"
+                        },
+                        "rif": {
+                            "xmlMap": "${fascinator.home}/alerts/config/rifXmlMap.json"
+                        }
+                    }
+                }
+            }
+        ],
+        "baseline": {
+            "viewId": "default",
+            "packageType": "dataset",
+            "redbox:formVersion": "1.5.2",
+            "redbox:newForm": "true",
+            "redbox:submissionProcess.redbox:submitted": "true"
+        }
+    },
     "watcher": {
         "path": "${watcher.home}"
     },
